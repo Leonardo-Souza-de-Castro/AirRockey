@@ -576,7 +576,7 @@ Transform:
   m_GameObject: {fileID: 596424084}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.28, z: 0}
+  m_LocalPosition: {x: 0, y: -4.28, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -595,8 +595,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::movePlayer
   speed: 50
-  boundY: 4.5
-  minboundY: 0.5
+  boundY: -4.5
+  minboundY: -0.5
   boundX: 2.25
   source: {fileID: 596424090}
 --- !u!82 &596424090
@@ -1727,7 +1727,7 @@ Transform:
   m_GameObject: {fileID: 2128516378}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.28, z: 0}
+  m_LocalPosition: {x: 0, y: 4.28, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1747,8 +1747,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::moveIAPlayer
   disco: {fileID: 1526165314}
   speed: 5
-  boundY: -4.4
-  minboundY: -0.5
+  boundY: 4.4
+  minboundY: 0.5
   boundX: 2.25
   source: {fileID: 2128516384}
 --- !u!82 &2128516384

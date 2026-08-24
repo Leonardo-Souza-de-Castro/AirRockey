@@ -4,8 +4,8 @@ public class moveIAPlayer : MonoBehaviour
 {
     public Transform disco;              // Arraste o disco (disco) aqui
     public float speed = 5f;
-    public float boundY = -4.4f;            // Define os limites em Y
-    public float minboundY = -0.5f;            // Define os limites em Y
+    public float boundY = 4.4f;            // Define os limites em Y
+    public float minboundY = 0.5f;            // Define os limites em Y
     public float boundX = 2.25f;            // Define os limites em X
     public AudioSource source;
 
@@ -35,10 +35,10 @@ public class moveIAPlayer : MonoBehaviour
         //movimenta o player em direção ao alvo (descanso ou disco)
 
         //limita o movimento do player dentro do campo
-        if(rb.position.y < boundY){
+        if(rb.position.y > boundY){
             rb.position = new Vector2(rb.position.x, boundY);
         }
-        else if(rb.position.y > minboundY){
+        else if(rb.position.y < minboundY){
             rb.position = new Vector2(rb.position.x, minboundY);
         }
 
@@ -50,7 +50,7 @@ public class moveIAPlayer : MonoBehaviour
         }
 
         if(disco.position.y > minboundY){
-            Vector2 alvo = new Vector2(disco.position.x, -3);
+            Vector2 alvo = new Vector2(disco.position.x, 3);
             float distancia1 = Vector2.Distance(rb.position, alvo);
 
             if(distancia1 > 0.1f){

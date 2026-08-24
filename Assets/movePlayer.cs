@@ -3,8 +3,8 @@ using UnityEngine;
 public class movePlayer : MonoBehaviour
 {
     public float speed = 50f;
-    public float boundY = 4.4f;            // Define os limites em Y
-    public float minboundY = 0.5f;            // Define os limites em Y
+    public float boundY = -4.4f;            // Define os limites em Y
+    public float minboundY = -0.5f;            // Define os limites em Y
     public float boundX = 2.25f;            // Define os limites em X
     private Rigidbody2D rb2d;
     public AudioSource source;
@@ -25,13 +25,13 @@ public class movePlayer : MonoBehaviour
         Vector3 playerPos = transform.position;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if(mousePos.y > boundY)
-        {
-            mousePos.y = boundY;
-        }
-        else if(mousePos.y < minboundY)
+        if(mousePos.y > minboundY)
         {
             mousePos.y = minboundY;
+        }
+        else if(mousePos.y < boundY)
+        {
+            mousePos.y = boundY;
         }
 
         if(mousePos.x > boundX)
