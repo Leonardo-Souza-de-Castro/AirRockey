@@ -2,49 +2,56 @@ using UnityEngine;
 
 public class movePlayer : MonoBehaviour
 {
-    public Collider2D leftWall;
-    public Collider2D rightWall;
-    public Collider2D topWall;
-    public Collider2D bottomWall;
-
-    private Collider2D playerCollider;
+    public float speed = 50f;
+    public float boundY = 4.4f;            // Define os limites em Y
+    public float minboundY = 0.5f;            // Define os limites em Y
+    public float boundX = 2.25f;            // Define os limites em X
+    private Rigidbody2D rb2d;
+    public AudioSource source;
 
     void Start()
     {
-        playerCollider = GetComponent<Collider2D>();
+        rb2d = GetComponent<Rigidbody2D>();
+        source = GetComponent<AudioSource>();
     }
+
+    void OnCollisionEnter2D (Collision2D coll) {
+        source.Play();
+    }
+
 
     void Update()
     {
+        Vector3 playerPos = transform.position;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 pos = mousePos;
+        if(mousePos.y > boundY)
+        {
+            mousePos.y = boundY;
+        }
+        else if(mousePos.y < minboundY)
+        {
+            mousePos.y = minboundY;
+        }
 
-        // Limites das paredes
-        float left = leftWall.bounds.max.x;
-        float right = rightWall.bounds.min.x;
-        float bottom = bottomWall.bounds.max.y;
-        float top = topWall.bounds.min.y;
+        if(mousePos.x > boundX)
+        {
+            mousePos.x = boundX;
+        }
+        else if(mousePos.x < -boundX)
+        {
+            mousePos.x = -boundX;
+        }
 
-        // Metade do tamanho do player
-        float halfWidth = playerCollider.bounds.extents.x;
-        float halfHeight = playerCollider.bounds.extents.y;
+        Vector3 dir = mousePos - playerPos;
+        dir.Normalize();
 
-        // Impede o player de atravessar as paredes
-        pos.x = Mathf.Clamp(
-            pos.x,
-            left + halfWidth,
-            right - halfWidth
-        );
+        Vector3 speedVec = dir * speed;
 
-        pos.y = Mathf.Clamp(
-            pos.y,
-            bottom + halfHeight,
-            top - halfHeight
-        );
+        var vel = rb2d.linearVelocity;
+        vel.x = speedVec.x;
+        vel.y = speedVec.y;
+        rb2d.linearVelocity = vel; 
 
-        pos.z = transform.position.z;
-
-        transform.position = pos;
     }
 }

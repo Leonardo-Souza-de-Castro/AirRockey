@@ -22,6 +22,7 @@ public class DiscMove : MonoBehaviour
 
     }
 
+
     // Determina o comportamento da bola nas colisões com os Players (raquetes)
     void OnCollisionEnter2D (Collision2D coll) {
         if(coll.collider.CompareTag("Player")){
